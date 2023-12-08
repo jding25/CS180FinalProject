@@ -26,7 +26,7 @@
 								<h1 style="margin-bottom: 10px; padding-bottom: 0px; border-bottom: 0px;">CS180 <strong>Final Projects</strong>.</h1>
 								<p>Claire Ding, Thomas Davis-Mena</p>
 							</header>
-							<p>Below we describe our implementations of <strong><a href="#nn">Neural Network for Artistic Style</a></strong>, <strong><a href="#aug">Augmented Reality</a></strong>, and <strong><a href="#mag">Video Magnification</a></strong>.We hope you enjoy what we have to show!</p>
+							<p>Below we describe our implementations of <strong><a href="#nn">A  Neural Network for Artistic Style</a></strong>, <strong><a href="#aug">Augmented Reality</a></strong>, and <strong><a href="#mag">Video Magnification</a></strong>.We hope you enjoy what we have to show!</p>
 
 						</div>
 					</div>
@@ -39,7 +39,7 @@
 						<h2>Neural Network for Artistic Style</h2>
 						<p>The concept of style transfer in neural networks typically involves taking two images, a content image (e.g. a photograph) and a style image (e.g. a painting), and blending them together so that the output image looks like the content image but has the style of the style image. The algorithm we chose is VGG19, which is a pretrained model that is well suited for feature extraction. 
 						We followed the instructions outlined by<a href = "https://arxiv.org/pdf/1508.06576.pdf"> A Neural Algorithm of Artistic Style</a>. 
-						<br/><br/>Druing the implementation, we frist pre-processed both content and style images by normalizing them to the specific standard deviation and mean required by the vgg19 model. We then extracted the content feature (conv4_2 layer) and style feature (conv1_1, conv2_1, conv3_1, conv4_1, and conv5_1 layers) from content image and style image respectively by passing them through the neural network. For content loss, we took the mean squared error between the content representation of the content image and target image. For style loss, we first defined a function to compute gram matrix of feature maps to represent texture and color information, then we took the mean squared loss of gram matrix of style image and target image.
+						<br/><br/>Druing the implementation, we first pre-processed both content and style images by normalizing them to the specific standard deviation and mean required by the vgg19 model. We then extracted the content feature (conv4_2 layer) and style feature (conv1_1, conv2_1, conv3_1, conv4_1, and conv5_1 layers) from content image and style image respectively by passing them through the neural network. For content loss, we took the mean squared error between the content representation of the content image and target image. For style loss, we first defined a function to compute gram matrix of feature maps to represent texture and color information, then we took the mean squared loss of gram matrix of style image and target image.
 						<br/><br/> During the optimization, we first initialized the target image into random noise. We set content loss weight and style loss weight to 5e2, 1e-5 respectively to achieve the optimal result and learning rate to 0.01 for our Adam optimizer. We trained for 30000 iterations and we extracted output result for every 100 steps. During each iteration, we normalize the target image and put it through Sigmoid layer before we extract its content and style representation to compare with content and style images. 
 						<br/><br/> We observed that the style loss decreased drammatically at the beginning. We first got the gist of the style, then we gradually got the contour of the content image in our output image. Below are the graphs of weighted content loss, weighted style loss, and total loss.<br/><br/></p>
 				<div class="row">
@@ -83,7 +83,7 @@
 					</div>
 					<div class="col-4 col-6-medium col-12-small">
 						<article class="box style2">
-							<a href="#" class="image featured"><img src="testing_Gloucester_Harbor(1).gif" alt="" /></a>
+							<a href="#" class="image featured"><img src="testing2Gluc.gif" alt="" /></a>
 							<h3><a href="#">Result</a></h3>
 							<p>Training Process</p>
 						</article>
@@ -108,7 +108,7 @@
 				</div>
 				<div class="col-4 col-6-medium col-12-small">
 					<article class="box style2">
-						<a href="#" class="image featured"><img src="doe-2_glucosester_harbor.gif" alt="" /></a>
+						<a href="#" class="image featured"><img src="Doe2Gluc.gif" alt="" /></a>
 						<h3><a href="#">Result</a></h3>
 						<p>Training Process</p>
 					</article>
@@ -132,13 +132,13 @@
 				</div>
 				<div class="col-4 col-6-medium col-12-small">
 					<article class="box style2">
-						<a href="#" class="image featured"><img src="doe-2_glucosester_harbor_wheat_field.gif" alt="" /></a>
+						<a href="#" class="image featured"><img src="doe2Gluc2wheat.gif" alt="" /></a>
 						<h3><a href="#">Result</a></h3>
 						<p>Training Process</p>
 					</article>
 				</div>
 			</div>
-			<p><br/><br/>It didn't!!<br/><br/></p>
+			<p><br/><br/>As we had anticipated, it didn't!!<br/><br/></p>
 
 					</header>
 
@@ -170,7 +170,7 @@
 								<a href="#" class="image featured"><img src="MOSSEtrack.gif" alt="" /></a>
 								<h3><a href="#">Propogating Data Across Frames</a></h3>
 								<p>After collecting these 2D image points and defining this 3D world coordinate system, the next step was to propogate the 2D image coordinates for every following frame. We chose to use an off-the-shelf tracker to find those matching image coordinates.
-									After testing a few trackers, we came to a consensus on using the openCV's MOSSE tracker as it had both high accuracy and speed for our purpose. The following shows both our choice of bounding boxes and point centers after applying the MOSSE tracker to the video.</p>							
+									After testing a few trackers, we came to a consensus on using openCV's MOSSE tracker as it had both high accuracy and speed for our purpose. The following shows both our choice of bounding boxes and point centers after applying the MOSSE tracker to the video.</p>							
 								</article>
 								<p></p>
 						</div>
