@@ -37,31 +37,35 @@
 				<div class="container">
 					<header>
 						<h2>Neural Network for Artistic Style</h2>
-						<p>You could put some info here!</p>
+						<p>The concept of style transfer in neural networks typically involves taking two images, a content image (e.g. a photograph) and a style image (e.g. a painting), and blending them together so that the output image looks like the content image but has the style of the style image. The algorithm we chose is VGG19, which is a pretrained model that is well suited for feature extraction. 
+						We followed the instructions outlined by<a href = "https://arxiv.org/pdf/1508.06576.pdf"> A Neural Algorithm of Artistic Style</a>. 
+						<br/><br/>Druing the implementation, we frist pre-processed both content and style images by normalizing them to the specific standard deviation and mean required by the vgg19 model. We then extracted the content feature (conv4_2 layer) and style feature (conv1_1, conv2_1, conv3_1, conv4_1, and conv5_1 layers) from content image and style image respectively by passing them through the neural network. For content loss, we took the mean squared error between the content representation of the content image and target image. For style loss, we first defined a function to compute gram matrix of feature maps to represent texture and color information, then we took the mean squared loss of gram matrix of style image and target image.
+						<br/><br/> During the optimization, we first initialized the target image into random noise. We set content loss weight and style loss weight to 5e2, 1e-5 respectively to achieve the optimal result and learning rate to 0.01 for our Adam optimizer. We trained for 30000 iterations and we extracted output result for every 100 steps. During each iteration, we normalize the target image and put it through Sigmoid layer before we extract its content and style representation to compare with content and style images. 
+						<br/><br/> We observed that the style loss decreased drammatically at the beginning. We first got the gist of the style, then we gradually got the contour of the content image in our output image. Below are the graphs of weighted content loss, weighted style loss, and total loss.<br/><br/></p>
 				<div class="row">
 					<div class="col-4 col-6-medium col-12-small">
 						<article class="box style2">
-							<a href="#" class="image featured"><img src="Gloucester_Harbor.jpeg" alt="" /></a>
-							<h3><a href="#">Style</a></h3>
-							<p>Gloucester Harbor</p>
+							<a href="#" class="image featured"><img src="Style Loss.png" alt="" /></a>
+							<h3><a href="#">Style Loss</a></h3>
+							
 						</article>
 					</div>
 					<div class="col-4 col-6-medium col-12-small">
 						<article class="box style2">
-							<a href="#" class="image featured"><img src="doe-2.png" alt="" /></a>
-							<h3><a href="#">Content</a></h3>
-							<p>Doe Library and Sather Tower at Cal</p>
+							<a href="#" class="image featured"><img src="Content Loss.png" alt="" /></a>
+							<h3><a href="#">Content Loss</a></h3>
+					
 						</article>
 					</div>
 					<div class="col-4 col-6-medium col-12-small">
 						<article class="box style2">
-							<a href="#" class="image featured"><img src="doe-2_glucosester_harbor.gif" alt="" /></a>
-							<h3><a href="#">Result</a></h3>
-							<p>Training Process</p>
+							<a href="#" class="image featured"><img src="Total Loss.png" alt="" /></a>
+							<h3><a href="#">Total Loss</a></h3>
+							
 						</article>
 					</div>
 				</div>
-				<p>You could put some info here!</p>
+				<p><br/><br/>We first tried combining the image of Neckarfront in Tubingen, which is used as example in the paper, and an oil painitng Gloucester Harbor. <br/><br/></p>
 				<div class="row">
 					<div class="col-4 col-6-medium col-12-small">
 						<article class="box style2">
@@ -85,12 +89,12 @@
 						</article>
 					</div>
 				</div>
-				<p>You could put some info here!</p>
+				<p><br/><br/>Then we decided to mess around with our beautiful campus and its iconic tower.<br/><br/></p>
 			<div></div>
 			<div class="row">
 				<div class="col-4 col-6-medium col-12-small">
 					<article class="box style2">
-						<a href="#" class="image featured"><img src="testing_wheat_field.jpeg" alt="" /></a>
+						<a href="#" class="image featured"><img src="Gloucester_Harbor.jpeg" alt="" /></a>
 						<h3><a href="#">Style</a></h3>
 						<p>Gloucester Harbor</p>
 					</article>
@@ -104,13 +108,38 @@
 				</div>
 				<div class="col-4 col-6-medium col-12-small">
 					<article class="box style2">
+						<a href="#" class="image featured"><img src="doe-2_glucosester_harbor.gif" alt="" /></a>
+						<h3><a href="#">Result</a></h3>
+						<p>Training Process</p>
+					</article>
+				</div>
+			</div>
+			<p><br/><br/>Finally, we wanted to confirm that the content representation extracted by neural network only captures its high-level content rather than its style. Therefore, this time, instead of taking a pure photogtaph as our content image, we chose the result of the previous style transfered image, the sather tower with Gloucester Harbor style, as its content image, and another oil painting, Wheat Field, as its style image, to see if the style of the content image will influence the output. <br/><br/></p>
+			<div class="row">
+				<div class="col-4 col-6-medium col-12-small">
+					<article class="box style2">
+						<a href="#" class="image featured"><img src="wheat_field.jpeg" alt="" /></a>
+						<h3><a href="#">Style</a></h3>
+						<p>Wheat Field</p>
+					</article>
+				</div>
+				<div class="col-4 col-6-medium col-12-small">
+					<article class="box style2">
+						<a href="#" class="image featured"><img src="doe-2_glucosester_harbor.jpeg" alt="" /></a>
+						<h3><a href="#">Content</a></h3>
+						<p>Doe Library and Sather Tower at Cal with Gloucester Harbor style</p>
+					</article>
+				</div>
+				<div class="col-4 col-6-medium col-12-small">
+					<article class="box style2">
 						<a href="#" class="image featured"><img src="doe-2_glucosester_harbor_wheat_field.gif" alt="" /></a>
 						<h3><a href="#">Result</a></h3>
 						<p>Training Process</p>
 					</article>
 				</div>
 			</div>
-			<p>You could put some info here!</p>
+			<p><br/><br/>It didn't!!<br/><br/></p>
+
 					</header>
 
 				</div>
@@ -168,21 +197,23 @@
 				<div class="container">
 					<header>
 						<h2>Video Magnification</h2>
-						<p>Here is where you'll put all info about Video Magnification!</p>
+						<p>Eulerian Video Magnification is a fascinating technique used to amplify subtle changes in videos that are invisible to the naked eye. It can be used to visualize minute motions or color variations, like the pulsing of blood vessels or the vibrations of objects. In this project, we followed the procedures outlined by <a src = 'http://people.csail.mit.edu/mrub/papers/vidmag.pdf'>Eulerian Video Magnification for Revealing Subtle Changes in the World</a>.<br/>
+							We first extracted frames from our input video and convert each frame from RGB to YIQ (because it easily amplifies intensity and chromaticity independently of each other). Then, we decomposed each frame spatially into different spatial frequency bands using Laplacian pyramids. For each spatial band, we applied a band-pass filter temporally to extract the frequency of interest, such as the frequency of a heartbeat or breathing rate, to isolate subtle motions or color changes that we are interested in amplifying. The band-pass filter we chose is Butterworth band-pass filter. Since performing filtering in the frequency domain can be more efficient than in the time domain, we first converted this time series to the frequency domain using the Fast Fourier Transform. We then extracted frequency responses using freqz, and multiplied the FFT of the signal by the frequency response of the filter. This applies the filter's effect (both amplitude and phase alterations) to the signal in the frequency domain.
+							We then amplified the temporal changes with frequency band of interest by applying amplification factors. Finally, we reconstruct the video by combining the processed layers back into a single stream and collapsed the Laplacian pyramids.</p>
 					</div>
 						<div class="row">
 							<div class="col-4 col-6-medium col-12-small">
 								<article class="box style2">
 									<a href="#" class="image featured"><img src="facegif.gif" alt="" /></a>
 									<h3><a href="#">Video 1</a></h3>
-									<p>Amplification info here</p>
+									<p>Amplified Blood Circulation</p>
 								</article>
 							</div>
 							<div class="col-4 col-6-medium col-12-small">
 								<article class="box style2">
 									<a href="#" class="image featured"><img src="babygif.gif" alt="" /></a>
 									<h3><a href="#">Video 2</a></h3>
-									<p>Amplification info here</p>
+									<p>Amplified Breathing Rate</p>
 								</article>
 							</div>
 							<div class="col-4 col-6-medium col-12-small">
@@ -193,7 +224,7 @@
 								</article>
 							</div>
 						</div>
-						<p>You could put some info about your implementation right here!</p>
+						<p></p>
 					</header>
 				</div>
 			</article>
