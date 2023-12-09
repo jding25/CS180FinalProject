@@ -155,7 +155,7 @@
 								<h3><a href="#">Set-up</a></h3>
 								<p>For our implementation of <a href="https://inst.eecs.berkeley.edu/~cs194-26/sp20/hw/proj5/ar.html">Poor Man's Augmented Reality</a>, the first step was setting up a box containing non-planar points. In our case, we used a box with two surfaces holding points that are roughly 6cm apart.</p>
 							</article>
-							<p></p>
+						</br>
 						</div>
 						<div class="col-4 col-6-medium col-12-small">
 							<article class="box style2">
@@ -163,7 +163,7 @@
 								<h3><a href="#">Recording Known Data</a></h3>
 								<p>Subsequently, we recorded the 2D image points for every dot in the first frame and determined their relative 3D positions using the axes defined above with the origin centered around the bottom left corner. In this example, the blue, red,and green lines correspond to the x, y,and z-axes, respectively.</p>
 							</article>
-							<p></p>
+						</br>
 						</div>
 						<div class="col-4 col-6-medium col-12-small">
 							<article class="box style2">
@@ -172,7 +172,7 @@
 								<p>After collecting these 2D image points and defining this 3D world coordinate system, the next step was to propogate the 2D image coordinates for every following frame. We chose to use an off-the-shelf tracker to find those matching image coordinates.
 									After testing a few trackers, we came to a consensus on using openCV's MOSSE tracker as it had both high accuracy and speed for our purpose. The following shows both our choice of bounding boxes and point centers after applying the MOSSE tracker to the video.</p>							
 								</article>
-								<p></p>
+							</br>
 						</div>
 						<div class="col-4 col-6-medium col-12-small">
 							<article class="box style2">
@@ -180,7 +180,7 @@
 								<h3><a href="#">Projecting Cube at Origin</a></h3>
 								<p>Next, we used least squares to fit the previously defined 4 dimenional world coordinates to their corresponding 3 dimentional image coordinates(homogeneous coordinates) per frame. These projection matrices allowed us to easily find the corresponding image coordinate with any chosen world coordinate in a given frame. This allowed us to place a cube along any axis defined from the previous step and reconstruct a video of the cube at any angle. Above is a cube projected at the origin at half a unit size(3cm at every dimension).</p>
 							</article>
-							<p></p>
+						</br>
 						</div>
 						<div class="col-4 col-6-medium col-12-small">
 							<article class="box style2">
@@ -201,6 +201,31 @@
 							We first extracted frames from our input video and convert each frame from RGB to YIQ (because it easily amplifies intensity and chromaticity independently of each other). Then, we decomposed each frame spatially into different spatial frequency bands using Laplacian pyramids. For each spatial band, we applied a band-pass filter temporally to extract the frequency of interest, such as the frequency of a heartbeat or breathing rate, to isolate subtle motions or color changes that we are interested in amplifying. The band-pass filter we chose is Butterworth band-pass filter. Since performing filtering in the frequency domain can be more efficient than in the time domain, we first converted this time series to the frequency domain using the Fast Fourier Transform. We then extracted frequency responses using freqz, and multiplied the FFT of the signal by the frequency response of the filter. This applies the filter's effect (both amplitude and phase alterations) to the signal in the frequency domain.
 							We then amplified the temporal changes with frequency band of interest by applying amplification factors. Finally, we reconstruct the video by combining the processed layers back into a single stream and collapsed the Laplacian pyramids.</p>
 					</div>
+					<h1>Original</h1>
+					<div class="row">
+						<div class="col-4 col-6-medium col-12-small">
+							<article class="box style2">
+								<a href="#" class="image featured"><img src="face.gif" alt="" /></a>
+								<h3><a href="#">Video 1</a></h3>
+								<p>Original face</p>
+							</article>
+						</div>
+							<div class="col-4 col-6-medium col-12-small">
+							<article class="box style2">
+								<a href="#" class="image featured"><img src="baby.gif" alt="" /></a>
+								<h3><a href="#">Video 2</a></h3>
+								<p>Original baby</p>
+							</article>
+						</div>
+							<div class="col-4 col-6-medium col-12-small">
+							<article class="box style2">
+								<a href="#" class="image featured"><img src="engine.gif" alt="" /></a>
+								<h3><a href="#">Video 3</a></h3>
+								<p>Original engine</p>
+							</article>
+						</div>
+					</div>
+					<h1>Amplified</h1>
 						<div class="row">
 							<div class="col-4 col-6-medium col-12-small">
 								<article class="box style2">
@@ -218,13 +243,28 @@
 							</div>
 							<div class="col-4 col-6-medium col-12-small">
 								<article class="box style2">
-									<a href="#" class="image featured"><img src="doe-2_glucosester_harbor_wheat_field.gif" alt="" /></a>
-									<h3><a href="#">Video 3?</a></h3>
-									<p>Amplification info here</p>
+									<a href="#" class="image featured"><img src="newengine.gif" alt="" /></a>
+									<h3><a href="#">EC #3: Video 1</a></h3>
+									<p>Amplified Vibrations at 11-15hz</p>
 								</article>
 							</div>
+							<div class="col-4 col-6-medium col-12-small">
+								<article class="box style2">
+									<a href="#" class="image featured"><img src="baby2.gif" alt="" /></a>
+									<h3><a href="#">EC #3: Video 2</a></h3>
+									<p>Amplified Vibrations at 11-15hz</p>
+								</article>
+							</div>
+							<div class="col-4 col-6-medium col-12-small">
+								<article class="box style2">
+									<a href="#" class="image featured"><img src="face2.gif" alt="" /></a>
+									<h3><a href="#">EC #3: Video 3</a></h3>
+									<p>Amplified Vibrations at 11-15hz</p>
+								</article>
+							</div>
+							<p>Note on Extra Credit #3 content, the first set of frequences was determined by the idle rpm of a typical honda crv which is around 750rpm. The result was a much more vibrant engine than the human eye can perceive. All the shakes are likely the internal combustion causing a much higher set of vibrational frequencies. For the other two gifs in the first set, it was quite surprising to see these similar frequencies expressed in the tiny inperceivalbe movements of the eye.</p>
 						</div>
-						<p></p>
+						<br/>
 					</header>
 				</div>
 			</article>
